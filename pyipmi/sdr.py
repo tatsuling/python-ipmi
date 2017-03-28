@@ -410,10 +410,10 @@ class SdrFullSensorRecord(SdrCommon):
         units_3 = buffer.pop_unsigned_int(1)
         self.analog_data_format = (units_1 >> 6) & 0x3
         self.rate_unit = (units_1 >> 3) >> 0x7
-        self.modifier_unit = (units_1 >> 1) & 0x2
+        self.modifier_type = (units_1 >> 1) & 0x2
         self.percentage = units_1 & 0x1
         self.base_unit = units_2
-        self.units_3 = units_3
+        self.modifier_unit = units_3
         # byte 24
         self.linearization = buffer.pop_unsigned_int(1) & 0x7f
         # byte 25, 26
@@ -512,10 +512,10 @@ class SdrCompactSensorRecord(SdrCommon):
         units_2 = buffer.pop_unsigned_int(1)
         units_3 = buffer.pop_unsigned_int(1)
         self.rate_unit = (units_1 >> 3) >> 0x7
-        self.modifier_unit = (units_1 >> 1) & 0x2
+        self.modifier_type = (units_1 >> 1) & 0x2
         self.percentage = units_1 & 0x1
         self.base_unit = units_2
-        self.units_3 = units_3
+        self.modifier_unit = units_3
         self.record_sharing = buffer.pop_unsigned_int(2)
         self.positive_going_hysteresis = buffer.pop_unsigned_int(1)
         self.negative_going_hysteresis = buffer.pop_unsigned_int(1)
